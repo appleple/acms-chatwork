@@ -1,0 +1,17 @@
+{
+  "name": "appleple/chatwork",
+  "description": "ChatWork API と連携し、フォームの送信内容を ChatWork で通知するための機能を提供します。",
+  "keywords": [
+    "SMS", "a-blog cms"
+  ],
+  "homepage": "https://www.a-blogcms.jp",
+  "require": {
+    "php": ">=5.3.3"
+  },
+  "config": {
+    "vendor-dir": "vendor",
+    "platform": {
+      "php": "5.3.3"
+    }
+  }
+}
