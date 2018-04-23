@@ -6,7 +6,8 @@
   ],
   "homepage": "https://www.a-blogcms.jp",
   "require": {
-    "php": ">=5.3.3"
+    "php": ">=5.3.3",
+    "chobie/chatwork-api-client": "dev-master"
   },
   "config": {
     "vendor-dir": "vendor",

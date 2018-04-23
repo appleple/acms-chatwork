@@ -6,6 +6,7 @@ use DB;
 use SQL;
 use Field;
 use Field_Validation;
+use Chatwork\APIFactory;
 
 class Engine
 {
@@ -38,25 +39,20 @@ class Engine
      */
     public function send()
     {
-        $hook_url = $this->config->get('chatwork_incoming_hook_url');
+        $hook_url = $this->config->get('chatwork_token');
         if (empty($hook_url)) {
             throw new \RuntimeException('Empty hook url.');
         }
-        $bot = new Slackbot($this->config->get('chatwork_incoming_hook_url'));
+        $cleient = APIFactory::createInstance(array(
+            "token" => $this->config->get('chatwork_form_token'),
+        ));
         $message = $this->config->get('chatwork_form_message');
-        $channel = $this->config->get('chatwork_form_channel');
+        $room_id = $this->config->get('chatwork_form_room_id');
         $from = $this->config->get('chatwork_form_from');
 
         $tpl = '<!-- BEGIN_MODULE Form --><!-- BEGIN step#result -->'.$message.'<!-- END step#result --><!-- END_MODULE Form -->';
         $text = build(setGlobalVars($tpl), Field_Validation::singleton('post'));
-        $chatwork = $bot->text($text);
-        if ($channel) {
-            $chatwork->toChannel($channel);
-        }
-        if ($from) {
-            $chatwork->from($from);
-        }
-        $chatwork->send();
+        $chatwork->toChannel($room_id, $text);
     }
 
     /**

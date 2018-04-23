@@ -1,21 +1,21 @@
 <h2 class="acms-admin-admin-title2"><!-- T -->ChatWork Form 設定<!-- /T --></h2>
 <table class="acms-admin-table-admin-edit">
 	<tr>
-		<th>Incoming Hook URL
+		<th>ChatWork のアクセストークン
 			<i class="acms-admin-icon-tooltip js-acms-tooltip-hover" data-acms-tooltip="ChatWorkで発行した、Incoming Hook URLを設定します。"></i>
 		</th>
 		<td>
-			<input type="text" name="chatwork_incoming_hook_url" value="{chatwork_incoming_hook_url}" class="acms-admin-form-width-full"/>
-			<input type="hidden" name="mail[]" value="chatwork_incoming_hook_url" />
+			<input type="text" name="chatwork_form_token" value="{chatwork_form_token}" class="acms-admin-form-width-full"/>
+			<input type="hidden" name="mail[]" value="chatwork_form_token" />
 		</td>
 	</tr>
 	<tr>
-		<th>Channel
+		<th>ChatWork のルームID
 			<i class="acms-admin-icon-tooltip js-acms-tooltip-hover" data-acms-tooltip="ChatWorkの送信先チャンネルを設定します。（先頭の#は除く）"></i>
 		</th>
 		<td>
-			<input type="text" name="chatwork_form_channel" value="{chatwork_form_channel}" class="acms-admin-form-width-full">
-			<input type="hidden" name="mail[]" value="chatwork_form_channel">
+			<input type="text" name="chatwork_form_room_id" value="{chatwork_form_room_id}" class="acms-admin-form-width-full">
+			<input type="hidden" name="mail[]" value="chatwork_form_room_id">
 		</td>
 	</tr>
 	<tr>
