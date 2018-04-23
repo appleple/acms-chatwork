@@ -52,7 +52,7 @@ class Engine
 
         $tpl = '<!-- BEGIN_MODULE Form --><!-- BEGIN step#result -->'.$message.'<!-- END step#result --><!-- END_MODULE Form -->';
         $text = build(setGlobalVars($tpl), Field_Validation::singleton('post'));
-        $chatwork->toChannel($room_id, $text);
+        $chatwork->sendMessage($room_id, $text);
     }
 
     /**
