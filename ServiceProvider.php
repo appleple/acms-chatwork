@@ -43,8 +43,6 @@ class ServiceProvider extends ACMS_App
      */
     public function init()
     {
-        require_once dirname(__FILE__) . '/vendor/autoload.php';
-
         $hook = HookFactory::singleton();
         $hook->attach('ChatWorkHook', new Hook);
 
