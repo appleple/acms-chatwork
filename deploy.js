@@ -55,8 +55,6 @@ co(function* () {
   try {
     fs.mkdirsSync(`ChatWork`);
     fs.mkdirsSync(`build`);
-    fs.copySync(`./composer.json`, 'ChatWork/composer.json');
-    fs.copySync(`./composer.lock`, `ChatWork/composer.lock`);
     fs.copySync(`./LICENSE`, `ChatWork/LICENSE`);
     fs.copySync(`./README.md`, `ChatWork/README.md`);
     fs.copySync(`./Engine.php`, `ChatWork/Engine.php`);
