@@ -6,7 +6,6 @@ use DB;
 use SQL;
 use Field;
 use Field_Validation;
-use Chatwork\APIFactory;
 
 class Engine
 {
