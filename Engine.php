@@ -39,20 +39,27 @@ class Engine
      */
     public function send()
     {
-        $hook_url = $this->config->get('chatwork_token');
-        if (empty($hook_url)) {
-            throw new \RuntimeException('Empty hook url.');
-        }
-        $cleient = APIFactory::createInstance(array(
-            "token" => $this->config->get('chatwork_form_token'),
-        ));
+        $accessToken = $this->config->get('chatwork_form_token');
         $message = $this->config->get('chatwork_form_message');
         $room_id = $this->config->get('chatwork_form_room_id');
         $from = $this->config->get('chatwork_form_from');
-
         $tpl = '<!-- BEGIN_MODULE Form --><!-- BEGIN step#result -->'.$message.'<!-- END step#result --><!-- END_MODULE Form -->';
         $text = build(setGlobalVars($tpl), Field_Validation::singleton('post'));
-        $chatwork->sendMessage($room_id, $text);
+        $headers = array(
+            'X-ChatWorkToken: '.$accessToken
+        );
+        $option = array(
+            'body' => $text
+        );
+
+        $ch = curl_init('https://api.chatwork.com/v2/rooms/'.$room_id.'/messages');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($option));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
     }
 
     /**

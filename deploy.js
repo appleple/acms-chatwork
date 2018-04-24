@@ -63,7 +63,6 @@ co(function* () {
     fs.copySync(`./Hook.php`, `ChatWork/Hook.php`);
     fs.copySync(`./ServiceProvider.php`, `ChatWork/ServiceProvider.php`);
     fs.copySync(`./theme/form.html`, `ChatWork/theme/form.html`);
-    yield systemCmd(`cd ./ChatWork; composer install`);
     yield zipPromise(`ChatWork`, `./build/chatwork.zip`);
     fs.removeSync(`ChatWork`);
     yield systemCmd('git add -A');
