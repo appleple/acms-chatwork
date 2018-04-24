@@ -41,7 +41,6 @@ class Engine
         $accessToken = $this->config->get('chatwork_form_token');
         $message = $this->config->get('chatwork_form_message');
         $room_id = $this->config->get('chatwork_form_room_id');
-        $from = $this->config->get('chatwork_form_from');
         $tpl = '<!-- BEGIN_MODULE Form --><!-- BEGIN step#result -->'.$message.'<!-- END step#result --><!-- END_MODULE Form -->';
         $text = build(setGlobalVars($tpl), Field_Validation::singleton('post'));
         $headers = array(
