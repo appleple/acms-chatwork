@@ -34,7 +34,14 @@ https://www.chatwork.com/service/packages/chatwork/subpackages/api/token.php
 
 <img src="./images/install.png" />
 
-インストール完了後は、管理ページ > フォーム > 連携したいフォームID より ChatWork の管理ページに移動します。その後、「Webhook URL」という項目がありますので、その項目に先ほど覚えておいた Webhook URL を入力します。 これでa-blog cmsと ChatWork を連携させる準備は整いました。
+インストール完了後は、管理ページ > フォーム > 連携したいフォームID より ChatWork の管理ページに移動します。その後、「APIトークン」という項目がありますので、その項目に先ほど覚えておいた APIトークン を入力します。
+また「ルームID」には、下記のURLの*****の部分を入力します。
+
+```
+https://www.chatwork.com/#!rid*****
+```
+
+これでa-blog cmsと ChatWork を連携させる準備は整いました。
 
 <img src="./images/setting.png" />
 
