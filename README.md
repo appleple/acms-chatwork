@@ -8,24 +8,27 @@ a-blog cms の 拡張アプリ「ChatWork for a-blog cms」を使うとフォー
 利用するためにはダウンロード後、/extension/pluginsに設置してください。
 
 ## 使い方
-下の図のように、ChatWorkに通知したいFormIDを指定し、メッセージの送信先チャネルを「Channel」に送信元の名前を「From」に設定します。またメッセージにはFormモジュールの変数と、グローバル変数を使用することができます。
-<img src="./images/screenshot.png" />
+下の図のように、ChatWorkに送信したいメッセージを入力しておくことでお問い合わせがあった時などに、そのメッセージをChatWorkに送信することができます。
+メッセージにはFormモジュールの変数と、グローバル変数を使用することができます。
+<img src="./images/setting.png" />
 
 ## カスタマイズ手順
 以下の3つのステップで a-blog cms と ChatWork を連携します。
 
 1. ChatWorkへの登録
-2. Webhook URL の取得
-3. a-blog cmsの拡張アプリ ChatWorkに Webhook URL を登録
+2. APIトークンの取得
+3. a-blog cmsの拡張アプリ ChatWorkにAPIトークンを登録
 
 ### 1. ChatWorkへの登録
 ChatWorkのアカウントをお持ちでない方は下記のURLにてアカウントを作成しましょう。ある程度の機能までは無料で使うことができます。 https://www.chatwork.com/
 
-### 2. Webhook URL の取得
-下記のURLにてチャネルを指定して Webhook URL を取得します。ここで登録したチャネル以外のチャネルにもメッセージを飛ばすことはできますので好きなチャネルを指定して作成しましょう。 <br/>
-https://www.chatwork.com/services/new/incoming-webhook
+### 2. APIトークン の取得
+https://www.chatwork.com/service/packages/chatwork/subpackages/api/token.php
 
-### 3. a-blog cmsの拡張アプリ ChatWork に Webhook URL を登録
+パスワードを入力してAPIトークンを取得してください。
+<img src="./images/access_token.png" />
+
+### 3. a-blog cmsの拡張アプリ ChatWork に APIトークン を登録
 
 管理ページ > 拡張アプリより「拡張アプリ管理」のページに移動します。そのページより下の図のように ChatWork をインストールします。
 
