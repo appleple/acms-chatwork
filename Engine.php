@@ -20,6 +20,11 @@ class Engine
     protected $config;
 
     /**
+     * @var string
+     */
+    protected $endpoint = 'https://api.chatwork.com/v2/rooms/%s/messages';
+
+    /**
      * Engine constructor.
      * @param string $code
      */
@@ -50,14 +55,23 @@ class Engine
             'body' => $text
         );
 
-        $ch = curl_init('https://api.chatwork.com/v2/rooms/'.$room_id.'/messages');
+        $ch = curl_init(sprintf($this->endpoint, $room_id));
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($option));
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
         $response = curl_exec($ch);
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+
+        if ( empty($response) || $status !== 200  ) {
+            throw new \RuntimeException("$status: $response");
+        }
     }
 
     /**
