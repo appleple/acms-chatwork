@@ -47,7 +47,7 @@ class ServiceProvider extends ACMS_App
         $hook->attach('ChatWorkHook', new Hook);
 
         $inect = InjectTemplate::singleton();
-        $inect->add('admin-form', PLUGIN_DIR . 'ChatWork/template/admin/form.html');
+        $inect->add('admin-form', PLUGIN_DIR . $this->name . '/template/admin/form.html');
     }
 
     /**

@@ -36,14 +36,14 @@ co(function* () {
      * ready plugins files
      */
     const copyFiles = fs.readdirSync('.');
-    fs.mkdirsSync('chatwork');
+    fs.mkdirsSync('ChatWork');
     fs.mkdirsSync(`build/v${version}`);
 
     /**
      * copy plugins files
      */
     copyFiles.forEach((file) => {
-      fs.copySync(`./${file}`, `chatwork/${file}`);
+      fs.copySync(`./${file}`, `ChatWork/${file}`);
     });
 
     /**
@@ -52,14 +52,14 @@ co(function* () {
     console.log('Remove unused files.');
     console.log(ignores);
     ignores.forEach((path) => {
-      fs.removeSync(`chatwork/${path}`);
+      fs.removeSync(`ChatWork/${path}`);
     });
 
-    yield zipPromise('chatwork', `./build/v${version}/chatwork.zip`);
-    fs.copySync(`./build/v${version}/chatwork.zip`, './build/chatwork.zip');
+    yield zipPromise('ChatWork', `./build/v${version}/ChatWork.zip`);
+    fs.copySync(`./build/v${version}/ChatWork.zip`, './build/ChatWork.zip');
   } catch (err) {
     console.log(err);
   } finally {
-    fs.removeSync('chatwork');
+    fs.removeSync('ChatWork');
   }
 });
