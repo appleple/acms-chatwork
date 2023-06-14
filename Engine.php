@@ -2,10 +2,8 @@
 
 namespace Acms\Plugins\ChatWork;
 
-use DB;
-use SQL;
+use Common;
 use Field;
-use Field_Validation;
 
 class Engine
 {
@@ -13,6 +11,11 @@ class Engine
      * @var \Field
      */
     protected $config;
+
+    /**
+     * @var \ACMS_POST
+     */
+    protected $module;
 
     /**
      * @var string
@@ -24,7 +27,6 @@ class Engine
      * @param string $code
      * @param \ACMS_POST
      */
-    public function __construct($code, module)
     public function __construct($code, $module)
     {
         $info = $module->loadForm($code);
@@ -32,6 +34,7 @@ class Engine
             throw new \RuntimeException('Not Found Form.');
         }
         $this->config = $info['data']->getChild('mail');
+        $this->module = $module;
     }
 
     /**
@@ -40,15 +43,14 @@ class Engine
     public function send()
     {
         $accessToken = $this->config->get('chatwork_form_token');
-        $message = $this->config->get('chatwork_form_message');
+        $messageTpl = $this->config->get('chatwork_form_message');
         $room_id = $this->config->get('chatwork_form_room_id');
-        $tpl = '<!-- BEGIN_MODULE Form --><!-- BEGIN step#result -->'.$message.'<!-- END step#result --><!-- END_MODULE Form -->';
-        $text = build(setGlobalVars($tpl), Field_Validation::singleton('post'));
+        $body = Common::getMailTxtFromTxt($messageTpl, $this->module->Post->getChild('field'));
         $headers = array(
             'X-ChatWorkToken: '.$accessToken
         );
         $option = array(
-            'body' => $text
+            'body' => $body
         );
 
         $ch = curl_init(sprintf($this->endpoint, $room_id));
@@ -65,7 +67,7 @@ class Engine
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        if ( empty($response) || $status !== 200  ) {
+        if (empty($response) || $status !== 200) {
             throw new \RuntimeException("$status: $response");
         }
     }
