@@ -25,6 +25,7 @@ class Engine
      * @param \ACMS_POST
      */
     public function __construct($code, module)
+    public function __construct($code, $module)
     {
         $info = $module->loadForm($code);
         if (empty($info)) {
