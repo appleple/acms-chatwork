@@ -2,6 +2,24 @@
 <table class="acms-admin-table-admin-edit">
   <tr>
     <th>
+      Chatwork連携<i
+        class="acms-admin-icon-tooltip js-acms-tooltip js-acms-tooltip-hover"
+        data-acms-tooltip="チェックをすると、Chatworkの連携が有効になります。"
+      ></i>
+    </th>
+    <td>
+      <div class="acms-admin-form-checkbox">
+        <input type="hidden" name="chatwork_void" value="off">
+        <input type="checkbox" name="chatwork_void" value="on"{chatwork_void:checked#on} id="chatwork_void">
+        <label for="chatwork_void">
+          <i class="acms-admin-ico-checkbox"></i>有効
+        </label>
+      </div>
+      <input type="hidden" name="mail[]" value="chatwork_void">
+    </td>
+  </tr>
+  <tr>
+    <th>
       APIトークン
       <i
         class="acms-admin-icon-tooltip js-acms-tooltip-hover"

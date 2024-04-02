@@ -17,6 +17,14 @@ class Hook
         if (!($thisModule instanceof ACMS_POST_Form_Submit)) {
             return;
         }
+        $formCode = $thisModule->Post->get('id');
+        if(!$formCode) {
+            return;
+        }
+        $info = $thisModule->loadForm($formCode);
+        if($info['data']->getChild('mail')->get('chatwork_void') !== 'on') {
+            return;
+        }
         if (!$thisModule->Post->isValidAll()) {
             return;
         }
@@ -29,7 +37,6 @@ class Hook
             return;
         }
 
-        $formCode = $thisModule->Post->get('id');
         try {
             $engine = new Engine($formCode, $thisModule);
             $engine->send();
