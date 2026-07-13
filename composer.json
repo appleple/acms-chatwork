@@ -1,5 +1,5 @@
 {
-    "name": "com.appleple/acms-chatwork",
+    "name": "appleple/acms-chatwork",
     "description": "Chatwork と連携し、お問い合わせフォームなどの内容を Chatwork に通知する拡張アプリです。",
     "license": "MIT",
     "autoload": {
