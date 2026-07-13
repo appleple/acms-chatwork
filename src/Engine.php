@@ -47,7 +47,7 @@ class Engine
         $room_id = $this->config->get('chatwork_form_room_id');
         $body = Common::getMailTxtFromTxt($messageTpl, $this->module->Post->getChild('field'));
         $headers = array(
-            'X-ChatWorkToken: '.$accessToken
+            'X-ChatWorkToken: ' . $accessToken
         );
         $option = array(
             'body' => $body
@@ -65,7 +65,11 @@ class Engine
 
         $response = curl_exec($ch);
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
+        if (PHP_VERSION_ID < 80000) {
+            // PHP 7.x 以前は明示的に close が必要。8.0+ では no-op（8.5 で非推奨）のため呼ばない。
+            // phpcs:ignore Generic.PHP.DeprecatedFunctions.Deprecated, PHPCompatibility.FunctionUse.RemovedFunctions.curl_closeDeprecated
+            curl_close($ch);
+        }
 
         if (empty($response) || $status !== 200) {
             throw new \RuntimeException("$status: $response");

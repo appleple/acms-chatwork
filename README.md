@@ -6,7 +6,7 @@ a-blog cms の 拡張アプリ「ChatWork for a-blog cms」を使うとフォー
 - a-blog cms: >= Ver. 2.9.0
 
 ## ダウンロード
-[ChatWork for a-blog cms](https://github.com/appleple/acms-chatwork/raw/master/build/chatwork.zip)
+[ChatWork for a-blog cms](https://github.com/appleple/acms-chatwork/releases/latest/download/ChatWork.zip)
 
 利用するためにはダウンロード後、/extension/pluginsに設置してください。
 

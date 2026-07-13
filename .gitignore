@@ -24,3 +24,6 @@ vendor
 
 ## app
 /chatwork
+
+# release artifacts (CI builds & publishes)
+/build/
